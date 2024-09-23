@@ -57,6 +57,13 @@ class LocationSearchService: NSObject, ObservableObject, MKLocalSearchCompleterD
         completer.delegate = self
     }
     
+    func searchFor(term: String) {
+        completer.delegate = self
+        completer.region = MKCoordinateRegion(.world)
+        completer.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
+        completer.queryFragment = term
+    }
+    
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         self.completions = completer.results
     }

@@ -55,8 +55,8 @@ struct MainView: View {
                 }
             }
             .sheet(isPresented: $showSearchSheet) {
-                SearchView(viewmodel: viewModel,
-                           locationSearchService: locationSearchService)
+                CitySearchView(locationService: LocationService(),
+                               viewModel: viewModel)
                 .presentationBackground(.thinMaterial)
             }
             .toolbar {

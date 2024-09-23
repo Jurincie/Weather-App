@@ -13,22 +13,31 @@
     "API Error" : {
 
     },
+    "Error: %@" : {
+
+    },
     "Humidity:" : {
 
     },
     "KPH" : {
 
     },
+    "Location Search" : {
+
+    },
     "MPH" : {
+
+    },
+    "No Results" : {
 
     },
     "OK" : {
 
     },
-    "Search" : {
+    "Results" : {
 
     },
-    "SEARCH" : {
+    "Search" : {
 
     },
     "Settings" : {
