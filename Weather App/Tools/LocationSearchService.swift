@@ -43,7 +43,6 @@ struct SearchBar: UIViewRepresentable {
     }
 }
 
-
 class LocationSearchService: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
     @Published var searchQuery = ""
     var completer: MKLocalSearchCompleter

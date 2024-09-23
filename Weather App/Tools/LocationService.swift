@@ -21,7 +21,6 @@ class LocationService: NSObject, ObservableObject {
     @Published var queryFragment: String = ""
     @Published private(set) var status: LocationStatus = .idle
     @Published private(set) var searchResults: [MKLocalSearchCompletion] = []
-    
     private var queryCancellable: AnyCancellable?
     private let searchCompleter: MKLocalSearchCompleter!
     
@@ -49,9 +48,6 @@ class LocationService: NSObject, ObservableObject {
 
 extension LocationService: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        // Depending on what you're searching, you might need to filter differently or
-        // remove the filter altogether. Filtering for an empty Subtitle seems to filter
-        // out a lot of places and only shows cities and countries.
         self.searchResults = completer.results.filter({ $0.title.contains(",") })
         self.status = completer.results.isEmpty ? .noResults : .result
     }

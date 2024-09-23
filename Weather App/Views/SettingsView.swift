@@ -7,10 +7,11 @@
 
 import SwiftUI
 
+
 struct SettingsView: View {
     @Environment(\.horizontalSizeClass) var horizontal
     @Environment(AppCoordinator.self) var appCoordinator
-    var viewModel = SettingsViewModel.shared
+    var viewModel = ViewModel.shared
     
     var body: some View {
         ZStack {

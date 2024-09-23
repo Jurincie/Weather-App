@@ -20,9 +20,9 @@ extension MainView {
         }()
         let locationManager = LocationManager.shared
         var showErrorAlert = false
-        let settingsViewModel = SettingsViewModel.shared
+        let settingsViewModel = SettingsView.ViewModel.shared
         var weatherInfo: WeatherInfo?
-        var imageCache = AsyncImageCache(maxElements: 10)
+        var imageCache = WeatherImageCache(maxElements: 10)
         var loading = false
         
         init() {
@@ -42,6 +42,29 @@ extension MainView {
                                                     name:NSNotification.Name(rawValue: "Fetch WeatherInfo"),
                                                     object: String.self)
 
+        }
+        
+        func getWindDirectionImage(_ degrees: Int) -> Image {
+            switch degrees {
+            case 0..<22:
+                return Image(systemName: "arrow.down")
+            case 22..<67:
+                return Image(systemName: "arrow.down.left")
+            case 67..<112:
+                return Image(systemName: "arrow.left")
+            case 112..<157:
+                return Image(systemName: "arrow.up.left")
+            case 157..<202:
+                return Image(systemName: "arrow.up")
+            case 202..<247:
+                return Image(systemName: "arrow.up.right")
+            case 247..<302:
+                return Image(systemName: "arrow.right")
+            case 302..<347:
+                return Image(systemName: "arrow.down.right")
+            default:
+                return Image(systemName: "arrow.up.right")
+            }
         }
         
         @objc func fetchWeatherInfo(notification: Notification) {

@@ -11,13 +11,13 @@ struct MainView: View {
     @Environment(AppCoordinator.self) var appCoordinator
     @State var locationSearchService: LocationSearchService
     @State var showSearchSheet = false
-    let viewModel = ViewModel()
+    let mainViewModel = ViewModel()
     
     var body: some View {
         ZStack {
             Color.blue
             VStack(alignment: .leading) {
-                if viewModel.loading {
+                if mainViewModel.loading {
                     ProgressView()
                 } else {
                     NavigationStack {
@@ -26,20 +26,20 @@ struct MainView: View {
                                 .font(.caption)
                             
                             HStack {
-                                Text(String(viewModel.weatherInfo?.name ?? ""))
+                                Text(String(mainViewModel.weatherInfo?.name ?? ""))
                                     .font(.largeTitle)
                                 Spacer()
-                                if viewModel.weatherInfo?.main?.temp != nil {
-                                    let temperature = viewModel.settingsViewModel.isCelcius ? kelvinToCelcius((viewModel.weatherInfo?.main?.temp)!) : kelvinToFahrenheit(
-                                        (viewModel.weatherInfo?.main?.temp)!
+                                if mainViewModel.weatherInfo?.main?.temp != nil {
+                                    let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius((mainViewModel.weatherInfo?.main?.temp)!) : kelvinToFahrenheit(
+                                        (mainViewModel.weatherInfo?.main?.temp)!
                                     )
-                                    if let str = viewModel.formatter.string(
+                                    if let str = mainViewModel.formatter.string(
                                         for: temperature
                                     ) {
                                         Text(str)
                                             .font(.largeTitle)
                                         Text(
-                                            viewModel.settingsViewModel.isCelcius ? "°C" : "°F"
+                                            mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F"
                                         )
                                         .font(.largeTitle)
                                     }
@@ -47,7 +47,7 @@ struct MainView: View {
                             }
                         }
                         Spacer()
-                        WeatherView(viewModel: viewModel)
+                        WeatherView(mainViewModel: mainViewModel)
                         Spacer()
                     }
                     .navigationTitle("Weather")
@@ -56,7 +56,7 @@ struct MainView: View {
             }
             .sheet(isPresented: $showSearchSheet) {
                 CitySearchView(locationService: LocationService(),
-                               viewModel: viewModel)
+                               viewModel: mainViewModel)
                 .presentationBackground(.thinMaterial)
             }
             .toolbar {
@@ -79,7 +79,7 @@ struct MainView: View {
                 }
             }
             .alert("API Error",
-                   isPresented: Bindable(viewModel).showErrorAlert) {
+                   isPresented: Bindable(mainViewModel).showErrorAlert) {
                 Button("OK", role: .cancel) {
                     fatalError()
                 }

@@ -8,38 +8,46 @@
 import SwiftUI
 
 struct WeatherView: View {
-    var viewModel: MainView.ViewModel
+    var mainViewModel: MainView.ViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let iconName = viewModel.weatherInfo?.weather?[0].icon {
-                let queryString = viewModel.locationManager.weatherIconQueryPrefix + iconName + viewModel.locationManager.weatherIconQuerySuffix
-                AsyncImage(url: URL(string: queryString)) 
-                .frame(width: 100, height: 100)
+            if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
+                if let index = mainViewModel.imageCache.elements.firstIndex(where: { weatherImageStruct in
+                    weatherImageStruct.id == iconName
+                }) {
+                    // how show image here?
+                    mainViewModel.imageCache.elements[index].image as AsyncImage
+                } else {
+                    // image not in cache
+                    let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
+                    AsyncImage(url: URL(string: queryString))
+                        .frame(width: 80, height: 80)
+                }
             }
-            if viewModel.weatherInfo?.wind?.speed != nil {
+            if mainViewModel.weatherInfo?.wind?.speed != nil {
                 HStack {
-                    if let windSpeed = viewModel.weatherInfo?.wind?.speed {
-                        let adjustedWindSpeed =  viewModel.settingsViewModel.isMetric ? mpsToKph(windSpeed) : mpsToMph(
+                    if let windSpeed = mainViewModel.weatherInfo?.wind?.speed {
+                        let adjustedWindSpeed =  mainViewModel.settingsViewModel.isMetric ? mpsToKph(windSpeed) : mpsToMph(
                             windSpeed
                         )
                         Image(systemName: "wind")
-                        if let str = viewModel.formatter.string(
+                        if let str = mainViewModel.formatter.string(
                             for: adjustedWindSpeed
                         ) {
                             Text(str)
-                            Text(viewModel.settingsViewModel.isMetric ? "KPH" : "MPH")
+                            Text(mainViewModel.settingsViewModel.isMetric ? "KPH" : "MPH")
                         }
-                        if let degrees = viewModel.weatherInfo?.wind?.deg {
-                            getSysImage(degrees)
+                        if let degrees = mainViewModel.weatherInfo?.wind?.deg {
+                            mainViewModel.getWindDirectionImage(degrees)
                         }
                     }
                 }
             }
-            if viewModel.weatherInfo?.main?.humidity != nil {
+            if mainViewModel.weatherInfo?.main?.humidity != nil {
                 HStack {
                     Text("Humidity:")
-                    Text("\(viewModel.weatherInfo?.main?.humidity ?? 0)°")
+                    Text("\(mainViewModel.weatherInfo?.main?.humidity ?? 0)°")
                 }
             }
         }
@@ -49,28 +57,5 @@ struct WeatherView: View {
 }
 
 #Preview {
-    WeatherView(viewModel: MainView.ViewModel())
-}
-
-func getSysImage(_ degrees: Int) -> Image {
-    switch degrees {
-    case 0..<22:
-        return Image(systemName: "arrow.down")
-    case 22..<67:
-        return Image(systemName: "arrow.down.left")
-    case 67..<112:
-        return Image(systemName: "arrow.left")
-    case 112..<157:
-        return Image(systemName: "arrow.up.left")
-    case 157..<202:
-        return Image(systemName: "arrow.up")
-    case 202..<247:
-        return Image(systemName: "arrow.up.right")
-    case 247..<302:
-        return Image(systemName: "arrow.right")
-    case 302..<347:
-        return Image(systemName: "arrow.down.right")
-    default:
-        return Image(systemName: "arrow.up.right")
-    }
+    WeatherView(mainViewModel: MainView.ViewModel())
 }

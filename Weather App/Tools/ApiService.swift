@@ -8,26 +8,6 @@
 import Foundation
 import SwiftUI
 
-/*
- https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
- https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key}
- https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
-
- https://api.openweathermap.org/data/2.5/weather?q=Dallas&appid=b3660824db9ee07a39128f01914989bc
- 
- get image name from weather->"icon"
- */
-
-struct WeatherImage: Identifiable {
-    let id: String
-    let image: AsyncImage<Image>
-    
-    init(named id: String, image: AsyncImage<Image>) {
-        self.id = id
-        self.image = image
-    }
-}
-
 enum ApiError: Error, CustomStringConvertible {
     case badURL
     case decodingError
@@ -45,10 +25,9 @@ enum ApiError: Error, CustomStringConvertible {
 }
 
 enum ApiService {
-    static func fetchWeatherImage(name:String) -> Image? {
-        return nil
-    }
-    
+    /// Generic method that returns Decodable type from Api via urlString
+    /// - Parameter urlString: querys
+    /// - Returns: Type
     static func fetch<T: Decodable>(from urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else { throw ApiError.badURL }
         
