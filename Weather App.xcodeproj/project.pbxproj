@@ -37,7 +37,6 @@
 		7A160BF42C9B7B7E00CCA0DB = {
 			isa = PBXGroup;
 			children = (
-				7A160C7E2C9CC22A00CCA0DB /* Views */,
 				7A160C712C9C5C6D00CCA0DB /* ReadMe.swift */,
 				7A160BFF2C9B7B7E00CCA0DB /* Weather App */,
 				7A160BFE2C9B7B7E00CCA0DB /* Products */,
@@ -50,13 +49,6 @@
 				7A160BFD2C9B7B7E00CCA0DB /* Weather App.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		7A160C7E2C9CC22A00CCA0DB /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

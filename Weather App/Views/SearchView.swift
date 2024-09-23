@@ -28,7 +28,9 @@ struct SearchView: View {
                                     char == ","
                                 }) {
                                     let city = completion.title.prefix(upTo: index)
-                                    print(city)
+                                    let query = viewmodel.locationManager.weatherQueryPrefix + city + "&appid=" + viewmodel.locationManager.weatherApi_KEY
+                                    
+                                    viewmodel.locationManager.weatherQueryString = query
                                     dismiss()
                                 }
                             }
