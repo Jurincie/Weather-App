@@ -17,16 +17,12 @@ struct SettingsView: View {
             Color.secondary
             VStack(alignment: .leading, spacing: 20) {
                 HStack(spacing: 4) {
-//                    Spacer()
                     Toggle("Temperature (°C/°F)" , isOn: Bindable(viewModel).isCelcius)
                     Text(viewModel.isCelcius ? "°C" : "°F")
-//                    Spacer()
                 }
                 HStack(spacing: 4) {
-//                    Spacer()
                     Toggle("Wind Speed (KPH/MPH)", isOn: Bindable(viewModel).isMetric)
                     Text(viewModel.isMetric ? "KPH" : "MPH")
-//                    Spacer()
                 }
                 .navigationTitle("Settings")
             }

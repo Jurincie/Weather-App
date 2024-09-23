@@ -34,8 +34,4 @@
     add Localization beginning
     write unit tests
     write UI tests
- 
-    Maybe: Add Radar page
- 
-    GoogleMaps Key: AIzaSyAxuTSaQ5QXBzd_1tQQB_pXHljqdQXY7ys
  */

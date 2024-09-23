@@ -31,11 +31,9 @@ extension MainView {
                                selector: #selector(fetchWeatherInfo),
                                name: Notification.Name("Fetch WeatherInfo"),
                                object: nil)
-
             Task {
                 try await loadWeather()
             }
-            loading = false
         }
         
         deinit
@@ -57,9 +55,11 @@ extension MainView {
         }
         
         func loadWeather() async throws {
+            loading = true
             if let location = locationManager.manager.location {
                 locationManager.setWeatherQueryFromReverseGeoLocation(location: location)
             }
+            loading = false
         }
     }
 }
