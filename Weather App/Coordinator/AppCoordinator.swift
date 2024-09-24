@@ -24,6 +24,7 @@ protocol AppCoordinatorProtocol {
 
 @Observable
 class AppCoordinator: AppCoordinatorProtocol {
+    
     var path: NavigationPath = NavigationPath()
     
     func push(_ screen: Screen) {
@@ -31,7 +32,9 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func pop() {
-        path.removeLast()
+        if path.count > 0 {
+            path.removeLast()
+        }
     }
     
     // MARK: - Presentation Style Providers

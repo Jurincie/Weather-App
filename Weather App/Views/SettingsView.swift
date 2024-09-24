@@ -15,7 +15,7 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            Color.secondary
+            Color.gray.edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading, spacing: 20) {
                 HStack(spacing: 4) {
                     Toggle("Temperature (°C/°F)" , isOn: Bindable(viewModel).isCelcius)
@@ -28,6 +28,7 @@ struct SettingsView: View {
                 .navigationTitle("Settings")
             }
             .background(.yellow)
+            .foregroundStyle(.black)
             // HACK: To get the navigation to work wih MVVM-C
             // using the navigationBarBackButton prevented popping this View
             // causing multiple SettingsViews to accumulate in Coordinator Path
@@ -36,7 +37,7 @@ struct SettingsView: View {
                 appCoordinator.pop()
             }){
                 Image(systemName: "arrow.left")
-                    .foregroundColor(Color.primary)
+                    .foregroundColor(Color.black)
             })
             .frame(maxWidth: horizontal == .compact ? 350 : 450)
             .font(.headline)

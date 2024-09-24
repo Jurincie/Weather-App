@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld mb" : {
+
+    },
     "%lld°" : {
 
     },
@@ -11,6 +14,9 @@
 
     },
     "API Error" : {
+
+    },
+    "Current Weather" : {
 
     },
     "Error: %@" : {
@@ -32,6 +38,9 @@
 
     },
     "OK" : {
+
+    },
+    "Pressure:" : {
 
     },
     "Results" : {

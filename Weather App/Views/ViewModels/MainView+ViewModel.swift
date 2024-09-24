@@ -22,7 +22,7 @@ extension MainView {
         var showErrorAlert = false
         let settingsViewModel = SettingsView.ViewModel.shared
         var weatherInfo: WeatherInfo?
-        var imageCache = WeatherImageCache(maxElements: 10)
+//        var imageCache = WeatherImageCache(maxElements: 10)
         var loading = false
         
         init() {

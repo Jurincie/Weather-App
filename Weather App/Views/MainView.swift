@@ -15,19 +15,17 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
-            Color.blue
+            Color.blue  // background
             VStack(alignment: .leading) {
                 if mainViewModel.loading {
                     ProgressView()
                 } else {
                     NavigationStack {
                         VStack(alignment: .leading) {
-                            Text(Date.now, format: .dateTime.day().month().year().hour().minute())
-                                .font(.caption)
-                            
                             HStack {
                                 Text(String(mainViewModel.weatherInfo?.name ?? ""))
                                     .font(.largeTitle)
+                                    .foregroundStyle(.white)
                                 Spacer()
                                 if mainViewModel.weatherInfo?.main?.temp != nil {
                                     let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius((mainViewModel.weatherInfo?.main?.temp)!) : kelvinToFahrenheit(
@@ -38,10 +36,12 @@ struct MainView: View {
                                     ) {
                                         Text(str)
                                             .font(.largeTitle)
+                                            .foregroundStyle(.white)
                                         Text(
                                             mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F"
                                         )
                                         .font(.largeTitle)
+                                        .foregroundStyle(.white)
                                     }
                                 }
                             }
@@ -49,6 +49,10 @@ struct MainView: View {
                         Spacer()
                         WeatherView(mainViewModel: mainViewModel)
                         Spacer()
+                        Text(Date.now, format: .dateTime.day().month().year().hour().minute())
+                            .font(.caption)
+                            .foregroundStyle(.primary)
+                            .padding(.bottom, 10)
                     }
                     .navigationTitle("Weather")
                     .padding()
