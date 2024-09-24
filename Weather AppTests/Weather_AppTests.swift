@@ -46,41 +46,33 @@ final class Weather_AppTests: XCTestCase {
         let image270 = Image(systemName: "arrow.right")
         let image315 = Image(systemName: "arrow.down.right")
         
-        for _ in 0...10 {
+        for _ in 0...20 {
             var rand = Int.random(in: 0..<22)
-            var value = rand
-            print(value)
-            XCTAssertEqual(viewModel.getWindDirectionImage(value), image000)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image000)
             
-            rand = Int.random(in: 0..<22)
-            value = (Bool.random() ? 45+rand : 45-rand)
-            print(value)
-            XCTAssertEqual(viewModel.getWindDirectionImage(value), image045)
+            rand = Int.random(in: 22..<67)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image045)
             
-            rand = Int.random(in: 0..<22)
-            value = (Bool.random() ? 90+rand : 90-rand)
-            print(value)
-            XCTAssertEqual(viewModel.getWindDirectionImage(90), image090)
+            rand = Int.random(in: 67..<112)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image090)
             
-            rand = Int.random(in: 0..<22)
-            value = (Bool.random() ? 135+rand : 135-rand)
-            print(value)
-            XCTAssertEqual(viewModel.getWindDirectionImage(135), image135)
+            rand = Int.random(in: 112..<157)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image135)
             
-            rand = Int.random(in: 0..<22)
-            value = (Bool.random() ? 180+rand : 180-rand)
-            print(value)
-            XCTAssertEqual(viewModel.getWindDirectionImage(value), image180)
+            rand = Int.random(in: 157..<202)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image180)
             
-            rand = Int.random(in: 0..<22)
-            value = (Bool.random() ? 225+rand : 225-rand)
-            print(value)
-            XCTAssertEqual(viewModel.getWindDirectionImage(value), image225)
+            rand = Int.random(in: 202..<247)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image225)
             
-            rand = Int.random(in: 0..<22)
-            value = (Bool.random() ? 270+rand : 270-rand)
-            print(value)
-            XCTAssertEqual(viewModel.getWindDirectionImage(value), image270)
+            rand = Int.random(in: 247..<292)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image270)
+            
+            rand = Int.random(in: 292..<337)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image315)
+            
+            rand = Int.random(in: 337..<360)
+            XCTAssertEqual(viewModel.getWindDirectionImage(rand), image000)
         }
     }
 }
