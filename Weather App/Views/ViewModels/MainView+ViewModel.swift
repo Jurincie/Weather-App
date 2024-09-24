@@ -62,8 +62,10 @@ extension MainView {
                 return Image(systemName: "arrow.right")
             case 302..<347:
                 return Image(systemName: "arrow.down.right")
+            case 347..<360:
+                return Image(systemName: "arrow.down")
             default:
-                return Image(systemName: "arrow.up.right")
+                return Image(systemName: "arrow.down")
             }
         }
         

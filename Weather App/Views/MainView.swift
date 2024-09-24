@@ -21,32 +21,6 @@ struct MainView: View {
                     ProgressView()
                 } else {
                     NavigationStack {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(String(mainViewModel.weatherInfo?.name ?? ""))
-                                    .font(.largeTitle)
-                                    .foregroundStyle(.white)
-                                Spacer()
-                                if mainViewModel.weatherInfo?.main?.temp != nil {
-                                    let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius((mainViewModel.weatherInfo?.main?.temp)!) : kelvinToFahrenheit(
-                                        (mainViewModel.weatherInfo?.main?.temp)!
-                                    )
-                                    if let str = mainViewModel.formatter.string(
-                                        for: temperature
-                                    ) {
-                                        Text(str)
-                                            .font(.largeTitle)
-                                            .foregroundStyle(.white)
-                                        Text(
-                                            mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F"
-                                        )
-                                        .font(.largeTitle)
-                                        .foregroundStyle(.white)
-                                    }
-                                }
-                            }
-                        }
-                        Spacer()
                         WeatherView(mainViewModel: mainViewModel)
                         Spacer()
                         Text(Date.now, format: .dateTime.day().month().year().hour().minute())
@@ -63,6 +37,7 @@ struct MainView: View {
                                viewModel: mainViewModel)
                 .presentationBackground(.thinMaterial)
             }
+            .presentationDetents([.medium])
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {

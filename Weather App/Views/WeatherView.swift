@@ -12,14 +12,19 @@ struct WeatherView: View {
     
     var body: some View {
         VStack {
-            Text("Current Weather")
+            Text(String(mainViewModel.weatherInfo?.name ?? ""))
+                .font(.largeTitle)
+                .foregroundStyle(.white)
+            Text("Current Conditions")
                 .font(.title)
                 .foregroundStyle(.white)
             VStack(alignment: .leading) {
                 ImageView(mainViewModel: mainViewModel)
+                    .padding(.horizontal, 10)
                 WindView(mainViewModel: mainViewModel)
                 HumidityView(mainViewModel: mainViewModel)
                 PressureView(mainViewModel: mainViewModel)
+                    .padding(.bottom, 10)
             }
             .font(.subheadline)
             .foregroundStyle(.white)
@@ -39,9 +44,30 @@ struct ImageView: View {
     var body: some View {
         HStack {
             if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
-                let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
-                AsyncImage(url: URL(string: queryString))
-                    .frame(width: 80, height: 80)
+                HStack {
+                    let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
+                    AsyncImage(url: URL(string: queryString))
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                    Spacer()
+                    if mainViewModel.weatherInfo?.main?.temp != nil {
+                        let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius((mainViewModel.weatherInfo?.main?.temp)!) : kelvinToFahrenheit(
+                            (mainViewModel.weatherInfo?.main?.temp)!
+                        )
+                        if let str = mainViewModel.formatter.string(
+                            for: temperature
+                        ) {
+                            Text(str)
+                                .font(.largeTitle)
+                                .foregroundStyle(.white)
+                            Text(
+                                mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F"
+                            )
+                            .font(.largeTitle)
+                            .foregroundStyle(.white)
+                        }
+                    }
+                }
             }
         }
     }

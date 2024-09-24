@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "(°C/°F)" : {
+
+    },
+    "(KPH/MPH)" : {
+
+    },
     "%lld mb" : {
 
     },
@@ -16,7 +22,7 @@
     "API Error" : {
 
     },
-    "Current Weather" : {
+    "Current Conditions" : {
 
     },
     "Error: %@" : {
@@ -52,13 +58,7 @@
     "Settings" : {
 
     },
-    "Temperature (°C/°F)" : {
-
-    },
     "Weather" : {
-
-    },
-    "Wind Speed (KPH/MPH)" : {
 
     }
   },

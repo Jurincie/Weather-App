@@ -17,27 +17,30 @@ struct SettingsView: View {
         ZStack {
             Color.gray.edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading, spacing: 20) {
-                HStack(spacing: 4) {
-                    Toggle("Temperature (°C/°F)" , isOn: Bindable(viewModel).isCelcius)
+                HStack(spacing: 10) {
+                    Image(systemName: "thermometer")
+                    Toggle("(°C/°F)" , isOn: Bindable(viewModel).isCelcius)
                     Text(viewModel.isCelcius ? "°C" : "°F")
                 }
-                HStack(spacing: 4) {
-                    Toggle("Wind Speed (KPH/MPH)", isOn: Bindable(viewModel).isMetric)
+                .padding()
+                
+                HStack(spacing: 10) {
+                    Image(systemName: "wind")
+                    Toggle("(KPH/MPH)", isOn: Bindable(viewModel).isMetric)
                     Text(viewModel.isMetric ? "KPH" : "MPH")
                 }
+                .padding()
                 .navigationTitle("Settings")
             }
-            .background(.yellow)
-            .foregroundStyle(.black)
-            // HACK: To get the navigation to work wih MVVM-C
-            // using the navigationBarBackButton prevented popping this View
-            // causing multiple SettingsViews to accumulate in Coordinator Path
+            .background(.blue)
+            .foregroundStyle(.white)
+            // This two lines of code allows the navigation BACK to work wih MVVM-C
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: Button(action : {
                 appCoordinator.pop()
             }){
                 Image(systemName: "arrow.left")
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.blue)
             })
             .frame(maxWidth: horizontal == .compact ? 350 : 450)
             .font(.headline)
