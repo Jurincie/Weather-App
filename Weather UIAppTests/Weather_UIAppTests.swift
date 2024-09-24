@@ -40,4 +40,21 @@ final class Weather_UIAppTests: XCTestCase {
             }
         }
     }
+    
+    @MainActor
+    func testSettingsButton() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        
+        // When
+        let settingsButton = app.buttons["Settings"]
+        
+        // Then
+       XCTAssert(settingsButton.exists)
+        settingsButton.tap()
+   
+        XCTAssert(!settingsButton.exists)
+    }
+
 }
