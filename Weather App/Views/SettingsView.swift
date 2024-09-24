@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct SettingsView: View {
-    @Environment(\.horizontalSizeClass) var horizontal
+    @Environment(\.sizeCategory) var sizeCategory
     @Environment(AppCoordinator.self) var appCoordinator
     var viewModel = ViewModel.shared
     
@@ -32,23 +32,25 @@ struct SettingsView: View {
                 .padding()
                 .navigationTitle("Settings")
             }
+            .font(.headline)
+            .minimumScaleFactor(sizeCategory.customMinScaleFactor)
             .background(.blue)
             .foregroundStyle(.white)
+            
             // This two lines of code allows the navigation BACK to work wih MVVM-C
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: Button(action : {
                 appCoordinator.pop()
             }){
                 Image(systemName: "arrow.left")
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.white)
             })
-            .frame(maxWidth: horizontal == .compact ? 350 : 450)
             .font(.headline)
-            .bold()
             .padding()
             .border(.primary, width: 2)
             .padding()
         }
+        .dynamicTypeSize(...DynamicTypeSize.accessibility2)
     }
 }
 

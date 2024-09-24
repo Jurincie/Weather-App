@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WeatherView: View {
+    @Environment(\.sizeCategory) var sizeCategory
     var mainViewModel: MainView.ViewModel
     
     var body: some View {
@@ -24,8 +25,8 @@ struct WeatherView: View {
                 WindView(mainViewModel: mainViewModel)
                 HumidityView(mainViewModel: mainViewModel)
                 PressureView(mainViewModel: mainViewModel)
-                    .padding(.bottom, 10)
             }
+            .minimumScaleFactor(sizeCategory.customMinScaleFactor)
             .font(.subheadline)
             .foregroundStyle(.white)
             .padding()
@@ -48,7 +49,7 @@ struct ImageView: View {
                     let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
                     AsyncImage(url: URL(string: queryString))
                         .scaledToFit()
-                        .frame(width: 60, height: 60)
+                        .font(.largeTitle)
                     Spacer()
                     if mainViewModel.weatherInfo?.main?.temp != nil {
                         let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius((mainViewModel.weatherInfo?.main?.temp)!) : kelvinToFahrenheit(
