@@ -15,7 +15,9 @@ extension ContentSizeCategory {
         case .small: fallthrough
         case .medium: fallthrough
         case .large:  return 1.0
-        default: return 0.7
+        case .extraLarge:  return 0.9
+        case .extraExtraLarge:  return 0.8
+        default: return 0.45
         }
     }
 }

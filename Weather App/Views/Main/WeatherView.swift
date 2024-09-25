@@ -13,12 +13,25 @@ struct WeatherView: View {
     
     var body: some View {
         VStack {
-            Text(String(mainViewModel.weatherInfo?.name ?? ""))
+            ViewThatFits {
+                VStack {
+                    Text(String(mainViewModel.weatherInfo?.name ?? ""))
+                        .foregroundStyle(.white)
+                    Text("Current Conditions")
+                }
+                .foregroundStyle(.white)
                 .font(.largeTitle)
+            
+                VStack {
+                    Text(String(mainViewModel.weatherInfo?.name ?? ""))
+                    Text("Current Conditions")
+                }
                 .foregroundStyle(.white)
-            Text("Current Conditions")
+                .foregroundStyle(.white)
                 .font(.headline)
-                .foregroundStyle(.white)
+                
+            }
+            
             VStack(alignment: .leading) {
                 ImageView(mainViewModel: mainViewModel)
                     .padding(.horizontal, 10)
@@ -27,7 +40,6 @@ struct WeatherView: View {
                 PressureView(mainViewModel: mainViewModel)
             }
             .minimumScaleFactor(sizeCategory.customMinScaleFactor)
-            .font(.subheadline)
             .foregroundStyle(.white)
             .padding()
             .border(.primary, width: 1)

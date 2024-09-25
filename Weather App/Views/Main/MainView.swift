@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.sizeCategory) var sizeCategory
     @State var showSearchSheet = false
     let mainViewModel = ViewModel()
     
@@ -20,10 +21,15 @@ struct MainView: View {
                     NavigationStack {
                         WeatherView(mainViewModel: mainViewModel)
                         Spacer()
-                        Text(Date.now, format: .dateTime.day().month().year().hour().minute())
-                            .font(.caption)
-                            .foregroundStyle(.white)
-                            .padding(.bottom, 10)
+                        ViewThatFits() {
+                            Text(Date.now, format: .dateTime.day().month().year().hour().minute())
+                                .font(.caption)
+                                .foregroundStyle(.white)
+                                .padding(.bottom, 10)
+                            
+                            Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                        }
+                        
                     }
                     .navigationTitle("Weather")
                     .padding()
@@ -56,6 +62,7 @@ struct MainView: View {
                     }
                 }
             }
+            .minimumScaleFactor(sizeCategory.customMinScaleFactor)
             .alert("API Error",
                    isPresented: Bindable(mainViewModel).showErrorAlert) {
                 Button("OK", role: .cancel) {
@@ -64,6 +71,8 @@ struct MainView: View {
             }
             .frame(maxWidth: .infinity)
             .background(Color.blue.opacity(0.9))
+            // given time limit this is a viable solution
+            .dynamicTypeSize(...DynamicTypeSize.accessibility1)
         }
     }
 }
