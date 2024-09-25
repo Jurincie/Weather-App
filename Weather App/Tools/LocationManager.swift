@@ -18,14 +18,12 @@ class LocationManager {
     var location: CLLocation?
     var weatherQueryString = "" {
         didSet {
-                let center = NotificationCenter.default
-                center.post(name: Notification.Name("Fetch WeatherInfo"),
-                            object: weatherQueryString)
-            }
+            let center = NotificationCenter.default
+            center.post(name: Notification.Name("Fetch WeatherInfo"),
+                        object: weatherQueryString)
         }
-    
-    // Singleton
-    static var shared = LocationManager()
+    }
+    static var shared = LocationManager() // Singleton
     
     init() {
         requestLocationPermission()

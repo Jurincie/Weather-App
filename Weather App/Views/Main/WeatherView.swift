@@ -43,30 +43,27 @@ struct ImageView: View {
     var mainViewModel: MainView.ViewModel
     
     var body: some View {
-        HStack {
+        if let temp = mainViewModel.weatherInfo?.main?.temp {
             if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
-                HStack {
+                let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius(temp) : kelvinToFahrenheit(temp)
+                if let str = mainViewModel.formatter.string(for: temperature) {
                     let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
-                    AsyncImage(url: URL(string: queryString))
-                        .scaledToFit()
-                        .font(.largeTitle)
-                    Spacer()
-                    if mainViewModel.weatherInfo?.main?.temp != nil {
-                        let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius((mainViewModel.weatherInfo?.main?.temp)!) : kelvinToFahrenheit(
-                            (mainViewModel.weatherInfo?.main?.temp)!
-                        )
-                        if let str = mainViewModel.formatter.string(
-                            for: temperature
-                        ) {
-                            Text(str)
-                                .font(.largeTitle)
-                                .foregroundStyle(.white)
-                            Text(
-                                mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F"
-                            )
+                    let url = URL(string: queryString)!
+                    HStack {
+                        AsyncCachedImage(url: url) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        Spacer()
+                        Text(str)
                             .font(.largeTitle)
                             .foregroundStyle(.white)
-                        }
+                        Text(mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F")
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
                     }
                 }
             }
@@ -77,23 +74,21 @@ struct ImageView: View {
 struct WindView: View {
     var mainViewModel: MainView.ViewModel
     var body: some View {
-        if mainViewModel.weatherInfo?.wind?.speed != nil {
-            HStack {
-                if let windSpeed = mainViewModel.weatherInfo?.wind?.speed {
-                    let adjustedWindSpeed =  mainViewModel.settingsViewModel.isMetric ? mpsToKph(windSpeed) : mpsToMph(
-                        windSpeed
-                    )
+        if mainViewModel.weatherInfo?.wind?.speed != nil,
+           let windSpeed = mainViewModel.weatherInfo?.wind?.speed {
+            let adjustedWindSpeed =  mainViewModel.settingsViewModel.isMetric ? mpsToKph(windSpeed) : mpsToMph(
+                windSpeed
+            )
+            if let str = mainViewModel.formatter.string(for: adjustedWindSpeed) {
+                HStack {
                     Image(systemName: "wind")
-                    if let str = mainViewModel.formatter.string(
-                        for: adjustedWindSpeed
-                    ) {
-                        Text(str)
-                        Text(mainViewModel.settingsViewModel.isMetric ? "KPH" : "MPH")
-                    }
+                    Text(str)
+                    Text(mainViewModel.settingsViewModel.isMetric ? "KPH" : "MPH")
                     if let degrees = mainViewModel.weatherInfo?.wind?.deg {
                         mainViewModel.getWindDirectionImage(degrees)
                     }
                 }
+                .accessibilityElement(children: .combine)
             }
         }
     }
@@ -108,6 +103,7 @@ struct HumidityView: View {
                 Text("Humidity:")
                 Text("\(mainViewModel.weatherInfo?.main?.humidity ?? 0)°")
             }
+            .accessibilityElement(children: .combine)
         }
     }
 }
@@ -121,6 +117,7 @@ struct PressureView: View {
                 Text("Pressure:")
                 Text("\(mainViewModel.weatherInfo?.main?.pressure ?? 0) mb")
             }
+            .accessibilityElement(children: .combine)
         }
     }
 }
