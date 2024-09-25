@@ -1,5 +1,5 @@
 //
-//  NSNumberFormatter+extension.swift
+//  NSNumberFormatter+currencyExtension.swift
 //  Weather App
 //
 //  Created by Ron Jurincie on 9/19/24.

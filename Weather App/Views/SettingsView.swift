@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.sizeCategory) var sizeCategory
-    @Environment(AppCoordinator.self) var appCoordinator
     var viewModel = ViewModel.shared
     
     var body: some View {
@@ -36,20 +35,24 @@ struct SettingsView: View {
             .minimumScaleFactor(sizeCategory.customMinScaleFactor)
             .background(.blue)
             .foregroundStyle(.white)
-            
-            // This two lines of code allows the navigation BACK to work wih MVVM-C
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: Button(action : {
-                appCoordinator.pop()
-            }){
-                Image(systemName: "arrow.left")
-                    .foregroundColor(Color.white)
-            })
-            .font(.headline)
             .padding()
             .border(.primary, width: 2)
-            .padding()
+            
+//            // hiding NavButton allows:
+//            //      the custom button to pop view per MVVM-C
+//            .navigationBarBackButtonHidden(true)
+//            .navigationBarItems(leading: Button(action : {
+//                appCoordinator.pop()
+//            }){
+//                Image(systemName: "arrow.left")
+//                    .foregroundColor(Color.white)
+//            })
+//            .font(.headline)
+//            .padding()
+//            .border(.primary, width: 2)
+//            .padding()
         }
+        // given time limit this is a viable solution
         .dynamicTypeSize(...DynamicTypeSize.accessibility2)
     }
 }

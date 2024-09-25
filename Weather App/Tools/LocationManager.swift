@@ -13,7 +13,7 @@ class LocationManager {
     let weatherApi_KEY = "b3660824db9ee07a39128f01914989bc"
     let weatherQueryPrefix = "https://api.openweathermap.org/data/2.5/weather?q="
     var weatherQueryPiece = "&appid="
-    let geocoder = CLGeocoder()
+    private let geocoder = CLGeocoder()
     let manager = CLLocationManager()
     var location: CLLocation?
     var weatherQueryString = "" {

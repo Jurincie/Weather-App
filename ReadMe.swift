@@ -6,32 +6,17 @@
 //
 
 /*
- Create weather app:
-    Use MVVM-C architecture ->
-        Views
-        ViewModels
-        (1) Coordinator
-    
-    use CoreLocation
-    use last location by default
-    support landscape and portrait orientations
-    create Combine APIService with debounce
-    cache images
  
-    Display:
-        WeatherImage
-        temp - largeTitie
-        feels like temp - title
-        weather.description - caption
-        wind - caption
-            speed
-            direction
-            gusts
-        clouds - caption
+ This app uses MVVM-C architecture to separate navigation from ViewModel
+ It also:
+    
+    uses CoreLocation
+    use last location by default
+    supports landscape and portrait orientations
 
-    add voice over
-    add dynamic Text
-    add Localization beginning
-    write unit tests
-    write UI tests
+    supports voice over
+    supports dynamic Text
+    supports beginning Localization
+    has unit tests
+    has UI tests
  */

@@ -17,7 +17,7 @@ struct WeatherView: View {
                 .font(.largeTitle)
                 .foregroundStyle(.white)
             Text("Current Conditions")
-                .font(.title)
+                .font(.headline)
                 .foregroundStyle(.white)
             VStack(alignment: .leading) {
                 ImageView(mainViewModel: mainViewModel)

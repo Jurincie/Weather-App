@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    @Environment(AppCoordinator.self) var appCoordinator
-    @State var locationSearchService: LocationSearchService
     @State var showSearchSheet = false
     let mainViewModel = ViewModel()
     
     var body: some View {
-        ZStack {
-            Color.blue  // background
+        NavigationStack {
             VStack(alignment: .leading) {
-                if mainViewModel.loading {
+                if mainViewModel.isLoading {
                     ProgressView()
                 } else {
                     NavigationStack {
@@ -25,7 +22,7 @@ struct MainView: View {
                         Spacer()
                         Text(Date.now, format: .dateTime.day().month().year().hour().minute())
                             .font(.caption)
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(.white)
                             .padding(.bottom, 10)
                     }
                     .navigationTitle("Weather")
@@ -40,10 +37,11 @@ struct MainView: View {
             .presentationDetents([.medium])
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        appCoordinator.push(.settingsView)
-                    }) {
+                    NavigationLink{
+                        NavigationCoordinator.shared.getSettingsView()
+                    } label: {
                         Text("Settings")
+                            .foregroundStyle(.white)
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -54,6 +52,7 @@ struct MainView: View {
                             Image(systemName: "magnifyingglass")
                             Text("Search")
                         }
+                        .foregroundStyle(.white)
                     }
                 }
             }
@@ -63,11 +62,13 @@ struct MainView: View {
                     fatalError()
                 }
             }
+            .frame(maxWidth: .infinity)
+            .background(Color.blue.opacity(0.9))
         }
     }
 }
 
 
 #Preview {
-    MainView(locationSearchService: LocationSearchService())
+    MainView()
 }
