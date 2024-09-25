@@ -71,6 +71,7 @@ extension MainView {
         }
         
         @objc func fetchWeatherInfo(notification: Notification) {
+            isLoading = true
             Task {
                 do {
                     weatherInfo = try await ApiService.fetch(from: notification.object as! String)
@@ -78,14 +79,13 @@ extension MainView {
                     showErrorAlert = true
                 }
             }
+            isLoading = false
         }
         
         func loadWeather() async throws {
-            isLoading = true
             if let location = locationManager.manager.location {
                 locationManager.setWeatherQueryFromReverseGeoLocation(location: location)
             }
-            isLoading = false
         }
     }
 }

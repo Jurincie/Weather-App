@@ -14,8 +14,16 @@ struct CitySearchView: View {
     var viewModel: MainView.ViewModel
     
     private func getQueryString(completionResult: MKLocalSearchCompletion) -> String {
-        var query = viewModel.locationManager.weatherQueryPrefix + completionResult.title.replacingOccurrences(of: " ", with: "")
+        var query = viewModel.locationManager.weatherQueryPrefix
         
+        // split on "," and replace whitespace with %20 on first
+        // and remove whitespace on second
+        // THEN append both to query
+        let splitStrings = completionResult.title.components(separatedBy: ",")
+        query += splitStrings.first!.replacingOccurrences(of: " ", with: "%20")
+        query += ","
+        query += splitStrings.last!.replacingOccurrences(of: " ", with: "")
+    
         if completionResult.subtitle != "" {
             query += "," + completionResult.subtitle.replacingOccurrences(of: " ", with: "")
         }
