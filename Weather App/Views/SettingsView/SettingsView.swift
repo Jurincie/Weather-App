@@ -37,23 +37,9 @@ struct SettingsView: View {
             .foregroundStyle(.white)
             .padding()
             .border(.primary, width: 2)
-            
-//            // hiding NavButton allows:
-//            //      the custom button to pop view per MVVM-C
-//            .navigationBarBackButtonHidden(true)
-//            .navigationBarItems(leading: Button(action : {
-//                appCoordinator.pop()
-//            }){
-//                Image(systemName: "arrow.left")
-//                    .foregroundColor(Color.white)
-//            })
-//            .font(.headline)
-//            .padding()
-//            .border(.primary, width: 2)
-//            .padding()
         }
         // given time limit this is a viable solution
-        .dynamicTypeSize(...DynamicTypeSize.accessibility2)
+        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
     }
 }
 
