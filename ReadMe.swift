@@ -19,4 +19,7 @@
     supports beginning Localization
     has unit tests
     has UI tests
+ 
+    There is a know bug for cities with multiple names like: "Kansas City"
+        Were it not for time constraints I would fix this
  */

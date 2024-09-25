@@ -15,10 +15,10 @@ func kelvinToFahrenheit(_ input: Double) -> Double {
     (input - 273.15) * 1.8 + 32
 }
 
-func mpsToMph(_ mps: Double) -> Double {
+func metersPerSecondToMph(_ mps: Double) -> Double {
     mps * 3.6 * 0.62
 }
 
-func mpsToKph(_ mps: Double) -> Double {
+func metersPerSecondToKph(_ mps: Double) -> Double {
     mps * 3.6
 }

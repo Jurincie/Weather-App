@@ -65,6 +65,7 @@ struct ImageView: View {
                         .font(.largeTitle)
                         .foregroundStyle(.white)
                     }
+                    .accessibilityElement(children: .combine)
                 }
             }
         }
@@ -76,9 +77,7 @@ struct WindView: View {
     var body: some View {
         if mainViewModel.weatherInfo?.wind?.speed != nil,
            let windSpeed = mainViewModel.weatherInfo?.wind?.speed {
-            let adjustedWindSpeed =  mainViewModel.settingsViewModel.isMetric ? mpsToKph(windSpeed) : mpsToMph(
-                windSpeed
-            )
+            let adjustedWindSpeed =  mainViewModel.settingsViewModel.isMetric ? metersPerSecondToKph(windSpeed) : metersPerSecondToMph(windSpeed)
             if let str = mainViewModel.formatter.string(for: adjustedWindSpeed) {
                 HStack {
                     Image(systemName: "wind")
