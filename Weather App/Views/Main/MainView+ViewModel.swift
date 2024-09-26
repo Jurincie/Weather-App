@@ -12,7 +12,6 @@ import SwiftUI
 extension MainView {
     @Observable
     class ViewModel {
-        var lastLocation: String?
         let formatter: NumberFormatter = {
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
@@ -23,7 +22,6 @@ extension MainView {
         var showErrorAlert = false
         let settingsViewModel = SettingsView.ViewModel.shared
         var weatherInfo: WeatherInfo?
-//        var imageCache = WeatherImageCache(maxElements: 10)
         var isLoading = false
         
         init() {
@@ -71,20 +69,24 @@ extension MainView {
         }
         
         @objc func fetchWeatherInfo(notification: Notification) {
-            isLoading = true
             Task {
                 do {
+                    isLoading = true
                     weatherInfo = try await ApiService.fetch(from: notification.object as! String)
+                    isLoading = false
                 } catch {
                     showErrorAlert = true
                 }
             }
-            isLoading = false
         }
         
         func loadWeather() async throws {
-            if let location = locationManager.manager.location {
-                locationManager.setWeatherQueryFromReverseGeoLocation(location: location)
+            if (UserDefaults.standard.string(forKey: "LastQueryString") != nil) {
+                locationManager.weatherQueryString = UserDefaults.standard.string(forKey: "LastQueryString")!
+            } else {
+                if let location = locationManager.manager.location {
+                    locationManager.setWeatherQueryFromReverseGeoLocation(location: location)
+                }
             }
         }
     }

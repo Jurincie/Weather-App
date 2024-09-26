@@ -18,6 +18,7 @@ class LocationManager {
     var location: CLLocation?
     var weatherQueryString = "" {
         didSet {
+            UserDefaults.standard.setValue(weatherQueryString, forKey: "LastQueryString")
             let center = NotificationCenter.default
             center.post(name: Notification.Name("Fetch WeatherInfo"),
                         object: weatherQueryString)
@@ -47,7 +48,7 @@ class LocationManager {
             guard let self = self else { return }
             guard let placemark = placemarks?.first,
                   placemark.locality != nil else { return }
-            weatherQueryString = weatherQueryPrefix  + placemark.locality! + "&appid=" + weatherApi_KEY
+            weatherQueryString = weatherQueryPrefix  + placemark.locality! + weatherQueryPiece + weatherApi_KEY
         })
     }
 }
