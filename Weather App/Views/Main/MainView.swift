@@ -19,17 +19,17 @@ struct MainView: View {
                     ProgressView()
                 } else {
                     NavigationStack {
-                        WeatherView(mainViewModel: mainViewModel)
+                        WeatherView(ViewModel: mainViewModel)
                         Spacer()
                         ViewThatFits() {
                             Text(Date.now, format: .dateTime.day().month().year().hour().minute())
                                 .font(.caption)
-                                .foregroundStyle(.white)
-                                .padding(.bottom, 10)
+                                .font(.largeTitle)
                             
                             Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                                .font(.title)
                         }
-                        
+                        .foregroundStyle(.white)
                     }
                     .navigationTitle("Weather")
                     .padding()

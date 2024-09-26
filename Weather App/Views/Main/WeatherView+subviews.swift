@@ -9,35 +9,33 @@ import SwiftUI
 
 struct WeatherView: View {
     @Environment(\.sizeCategory) var sizeCategory
-    var mainViewModel: MainView.ViewModel
+    var ViewModel: MainView.ViewModel
     
     var body: some View {
         VStack {
             ViewThatFits {
                 VStack {
-                    Text(String(mainViewModel.weatherInfo?.name ?? ""))
+                    Text(String(ViewModel.weatherInfo?.name ?? ""))
                         .foregroundStyle(.white)
+                        .font(.largeTitle)
                     Text("Current Conditions")
+                        .font(.title)
                 }
-                .foregroundStyle(.white)
-                .font(.largeTitle)
-                
                 VStack {
-                    Text(String(mainViewModel.weatherInfo?.name ?? ""))
+                    Text(String(ViewModel.weatherInfo?.name ?? ""))
+                        .font(.headline)
                     Text("Current Conditions")
+                        .font(.caption)
                 }
-                .foregroundStyle(.white)
-                .foregroundStyle(.white)
-                .font(.headline)
-                
             }
+            .foregroundStyle(.white)
             VStack(alignment: .leading) {
-                TemperatureView(mainViewModel: mainViewModel)
-                ImageView(mainViewModel: mainViewModel)
+                TemperatureView(mainViewModel: ViewModel)
+                ImageView(mainViewModel: ViewModel)
                     .padding(.bottom)
-                WindView(mainViewModel: mainViewModel)
-                HumidityView(mainViewModel: mainViewModel)
-                PressureView(mainViewModel: mainViewModel)
+                WindView(mainViewModel: ViewModel)
+                HumidityView(mainViewModel: ViewModel)
+                PressureView(mainViewModel: ViewModel)
             }
             .minimumScaleFactor(sizeCategory.customMinScaleFactor)
             .foregroundStyle(.white)
@@ -48,7 +46,7 @@ struct WeatherView: View {
 }
 
 #Preview {
-    WeatherView(mainViewModel: MainView.ViewModel())
+    WeatherView(ViewModel: MainView.ViewModel())
 }
 
 struct ImageView: View {
@@ -84,11 +82,10 @@ struct ImageView: View {
                                 .font(.title)
                                 .padding()
                                 .background(Color.clear), alignment: .bottom)
-                        .font(.largeTitle)
                     }
                 }
             }
-             Spacer()
+            Spacer()
         }
     }
 }
@@ -101,16 +98,13 @@ struct TemperatureView: View {
             if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
                 let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius(temp) : kelvinToFahrenheit(temp)
                 if let str = mainViewModel.formatter.string(for: temperature) {
-                    let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
                     HStack {
                         Spacer()
                         Text(str)
-                            .font(.largeTitle)
-                            .foregroundStyle(.white)
                         Text(mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F")
-                            .font(.largeTitle)
-                            .foregroundStyle(.white)
                     }
+                    .font(.title)
+                    .foregroundStyle(.white)
                     .accessibilityElement(children: .combine)
                 }
             }
@@ -133,6 +127,7 @@ struct WindView: View {
                         mainViewModel.getWindDirectionImage(degrees)
                     }
                 }
+                .font(.title)
                 .accessibilityElement(children: .combine)
             }
         }
@@ -148,6 +143,7 @@ struct HumidityView: View {
                 Text("Humidity:")
                 Text("\(mainViewModel.weatherInfo?.main?.humidity ?? 0)°")
             }
+            .font(.title)
             .accessibilityElement(children: .combine)
         }
     }
@@ -162,6 +158,7 @@ struct PressureView: View {
                 Text("Pressure:")
                 Text("\(mainViewModel.weatherInfo?.main?.pressure ?? 0) mb")
             }
+            .font(.title)
             .accessibilityElement(children: .combine)
         }
     }
