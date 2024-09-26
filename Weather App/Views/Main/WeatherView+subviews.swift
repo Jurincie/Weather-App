@@ -64,7 +64,7 @@ struct ImageView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                         } placeholder: {
-                            ProgressView()
+                            ActivityIndicator()
                         }
                         .font(.title)
                         
@@ -74,7 +74,7 @@ struct ImageView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .font(.headline)
                         } placeholder: {
-                            ProgressView()
+                            ActivityIndicator()
                         }
                         .overlay(
                             Text(mainViewModel.weatherInfo?.weather?[0].description ?? "")

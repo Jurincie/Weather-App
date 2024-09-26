@@ -16,7 +16,7 @@ struct MainView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 if mainViewModel.isLoading {
-                    ProgressView()
+                    ActivityIndicator()
                 } else {
                     NavigationStack {
                         WeatherView(ViewModel: mainViewModel)

@@ -114,50 +114,6 @@
             endingLineNumber = "72"
             landmarkName = "fetchWeatherInfo(notification:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E1760319-C0B9-4D19-91EB-74FAC7727FFD - e07e5ee2fd6a97b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Weather_App.MainView.ViewModel.fetchWeatherInfo(notification: Foundation.Notification) -&gt; ()"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72">
-               </Location>
-               <Location
-                  uuid = "E1760319-C0B9-4D19-91EB-74FAC7727FFD - 11c5722c92253092"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () async -&gt; () in Weather_App.MainView.ViewModel.fetchWeatherInfo(notification: Foundation.Notification) -&gt; ()"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72">
-               </Location>
-               <Location
-                  uuid = "E1760319-C0B9-4D19-91EB-74FAC7727FFD - 4803cfcb9d769aaa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async -&gt; () in Weather_App.MainView.ViewModel.fetchWeatherInfo(notification: Foundation.Notification) -&gt; ()"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,50 +162,6 @@
             endingLineNumber = "34"
             landmarkName = "init()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FAD6421D-E575-4497-91B3-D327C68406E2 - bd17ae7ef23b161e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async throws -&gt; () in Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34">
-               </Location>
-               <Location
-                  uuid = "FAD6421D-E575-4497-91B3-D327C68406E2 - 457b17fd452bb840"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 () async throws -&gt; () in Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34">
-               </Location>
-               <Location
-                  uuid = "FAD6421D-E575-4497-91B3-D327C68406E2 - b6727b17a8724a1c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; () in Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -266,64 +178,6 @@
             endingLineNumber = "75"
             landmarkName = "fetchWeatherInfo(notification:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AA8FBC27-4947-4CD3-A8EC-225D87A97378 - 4803cfcb9d769b45"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async -&gt; () in Weather_App.MainView.ViewModel.fetchWeatherInfo(notification: Foundation.Notification) -&gt; ()"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75">
-               </Location>
-               <Location
-                  uuid = "AA8FBC27-4947-4CD3-A8EC-225D87A97378 - 33239f0b9cd974c1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 () async -&gt; () in Weather_App.MainView.ViewModel.fetchWeatherInfo(notification: Foundation.Notification) -&gt; ()"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75">
-               </Location>
-               <Location
-                  uuid = "AA8FBC27-4947-4CD3-A8EC-225D87A97378 - 30e6c3556fe2a74f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 () async -&gt; () in Weather_App.MainView.ViewModel.fetchWeatherInfo(notification: Foundation.Notification) -&gt; ()"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75">
-               </Location>
-               <Location
-                  uuid = "AA8FBC27-4947-4CD3-A8EC-225D87A97378 - f54b792a68d8494a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for closure #1 () async -&gt; () in Weather_App.MainView.ViewModel.fetchWeatherInfo(notification: Foundation.Notification) -&gt; ()"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Desktop/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
