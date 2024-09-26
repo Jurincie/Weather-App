@@ -11,8 +11,13 @@ extension SettingsView {
     @Observable
     class ViewModel {
         static var shared = ViewModel()
-        var isMetric = false
-        var isCelcius = false
+        var isMetric: Bool = false
+        var isCelsius: Bool = false
+        
+        init() {
+            isMetric = UserDefaults.standard.bool(forKey: "IsMetric")
+            isCelsius = UserDefaults.standard.bool(forKey: "IsCelsius")
+        }
     }
 }
 

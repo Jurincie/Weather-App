@@ -7,7 +7,7 @@
 
 import Foundation
 
-func kelvinToCelcius(_ input: Double) -> Double {
+func kelvinToCelsius(_ input: Double) -> Double {
     return input - 273.15
 }
 

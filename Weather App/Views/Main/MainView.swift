@@ -42,14 +42,6 @@ struct MainView: View {
             }
             .presentationDetents([.medium])
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink{
-                        NavigationCoordinator.shared.getSettingsView()
-                    } label: {
-                        Text("Settings")
-                            .foregroundStyle(.white)
-                    }
-                }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         showSearchSheet = true
@@ -59,6 +51,14 @@ struct MainView: View {
                             Text("Search")
                         }
                         .foregroundStyle(.white)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink{
+                        NavigationCoordinator.shared.getSettingsView()
+                    } label: {
+                        Text("Settings")
+                            .foregroundStyle(.white)
                     }
                 }
             }

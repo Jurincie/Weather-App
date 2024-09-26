@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WeatherView: View {
     @Environment(\.sizeCategory) var sizeCategory
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     var ViewModel: MainView.ViewModel
     
     var body: some View {
@@ -51,23 +52,17 @@ struct WeatherView: View {
 
 struct ImageView: View {
     var mainViewModel: MainView.ViewModel
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     
     var body: some View {
         HStack {
-            Spacer()
+            if verticalSizeClass == .regular {
+                Spacer()
+            }
             if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
                 let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
                 if let url = URL(string: queryString) {
                     ZStack {
-                        AsyncCachedImage(url: url) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                        } placeholder: {
-                            ActivityIndicator()
-                        }
-                        .font(.title)
-                        
                         AsyncCachedImage(url: url) { image in
                             image
                                 .resizable()
@@ -95,18 +90,17 @@ struct TemperatureView: View {
     
     var body: some View {
         if let temp = mainViewModel.weatherInfo?.main?.temp {
-            if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
-                let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius(temp) : kelvinToFahrenheit(temp)
-                if let str = mainViewModel.formatter.string(for: temperature) {
-                    HStack {
-                        Spacer()
-                        Text(str)
-                        Text(mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F")
-                    }
-                    .font(.title)
-                    .foregroundStyle(.white)
-                    .accessibilityElement(children: .combine)
+            
+            let temperature = mainViewModel.settingsViewModel.isCelsius ? kelvinToCelsius(temp) : kelvinToFahrenheit(temp)
+            if let str = mainViewModel.formatter.string(for: temperature) {
+                HStack {
+                    Spacer()
+                    Text(str)
+                    Text(mainViewModel.settingsViewModel.isCelsius ? "°C" : "°F")
                 }
+                .font(.title)
+                .foregroundStyle(.white)
+                .accessibilityElement(children: .combine)
             }
         }
     }

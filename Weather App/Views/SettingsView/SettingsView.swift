@@ -18,14 +18,20 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 20) {
                 HStack(spacing: 10) {
                     Image(systemName: "thermometer")
-                    Toggle("(°C/°F)" , isOn: Bindable(viewModel).isCelcius)
-                    Text(viewModel.isCelcius ? "°C" : "°F")
+                    Toggle("(°C/°F)" , isOn: Bindable(viewModel).isCelsius)
+                        .onChange(of: viewModel.isCelsius) { oldValue, newValue in
+                        UserDefaults.standard.setValue(viewModel.isCelsius, forKey: "IsCelsius")
+                    }
+                    Text(viewModel.isCelsius ? "°C" : "°F")
                 }
                 .padding()
                 
                 HStack(spacing: 10) {
                     Image(systemName: "wind")
                     Toggle("(KPH/MPH)", isOn: Bindable(viewModel).isMetric)
+                        .onChange(of: viewModel.isMetric) { oldValue, newValue in
+                        UserDefaults.standard.setValue(viewModel.isMetric, forKey: "IsMetric")
+                    }
                     Text(viewModel.isMetric ? "KPH" : "MPH")
                 }
                 .padding()
