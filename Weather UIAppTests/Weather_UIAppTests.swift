@@ -50,6 +50,13 @@ final class Weather_UIAppTests: XCTestCase {
     }
     
     @MainActor
+    func testIsCelciusWorksProperly() {
+        let app = XCUIApplication()
+        app.launch()
+        
+    }
+    
+    @MainActor
     func testMainViewSettingsButton() {
         let app = XCUIApplication()
         app.launch()

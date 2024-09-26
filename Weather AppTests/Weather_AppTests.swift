@@ -10,28 +10,21 @@ import XCTest
 @testable import Weather_App
 
 final class Weather_AppTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testDistanceConversion() {
+        let kph = metersPerSecondToKph(10)
+        XCTAssertEqual(kph, 36)
+        
+        let mph = metersPerSecondToMph(10)
+        XCTAssertEqual(floor(mph), 22)
+        
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testTemperatureConversion() {
+        let celsius = kelvinToCelsius(273.5)
+        XCTAssertEqual(floor(celsius), 0)
+        
+        let fahrenheit = kelvinToFahrenheit(273.5)
+        XCTAssertEqual(floor(fahrenheit), 32)
     }
 
     func testGetWindDirectionImage() {
@@ -45,9 +38,10 @@ final class Weather_AppTests: XCTestCase {
         let image225 = Image(systemName: "arrow.up.right")
         let image270 = Image(systemName: "arrow.right")
         let image315 = Image(systemName: "arrow.down.right")
+        var rand = 0
         
         for _ in 0...20 {
-            var rand = Int.random(in: 0..<22)
+            rand = Int.random(in: 0..<22)
             XCTAssertEqual(viewModel.getWindDirectionImage(rand), image000)
             
             rand = Int.random(in: 22..<67)
