@@ -33,7 +33,6 @@ struct WeatherView: View {
             VStack(alignment: .leading) {
                 TemperatureView(mainViewModel: ViewModel)
                 ImageView(mainViewModel: ViewModel)
-                    .padding(.bottom)
                 WindView(mainViewModel: ViewModel)
                 HumidityView(mainViewModel: ViewModel)
                 PressureView(mainViewModel: ViewModel)
@@ -51,32 +50,49 @@ struct WeatherView: View {
 }
 
 struct ImageView: View {
-    var mainViewModel: MainView.ViewModel
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    var mainViewModel: MainView.ViewModel
     
     var body: some View {
         HStack {
-            if verticalSizeClass == .regular {
-                Spacer()
-            }
+            Spacer()
             if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
                 let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
                 if let url = URL(string: queryString) {
-                    ZStack {
-                        AsyncCachedImage(url: url) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .font(.headline)
-                        } placeholder: {
-                            ActivityIndicator()
+                    if verticalSizeClass == .regular {
+                        ZStack {
+                            AsyncCachedImage(url: url) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .font(.title)
+                            } placeholder: {
+                                ActivityIndicator()
+                            }
+                            .overlay(
+                                Text(mainViewModel.weatherInfo?.weather?[0].description ?? "")
+                                    .foregroundColor(.white)
+                                    .font(.title)
+                                    .padding()
+                                    .background(Color.clear, alignment: .bottom)
+                            )
                         }
-                        .overlay(
+                    } else {
+                        HStack {
                             Text(mainViewModel.weatherInfo?.weather?[0].description ?? "")
                                 .foregroundColor(.white)
-                                .font(.title)
+                                .font(.largeTitle)
                                 .padding()
-                                .background(Color.clear), alignment: .bottom)
+                                .background(Color.clear, alignment: .trailing)
+                            AsyncCachedImage(url: url) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .font(.largeTitle)
+                            } placeholder: {
+                                ActivityIndicator()
+                            }
+                        }
                     }
                 }
             }
