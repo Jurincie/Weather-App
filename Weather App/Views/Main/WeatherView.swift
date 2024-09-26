@@ -21,7 +21,7 @@ struct WeatherView: View {
                 }
                 .foregroundStyle(.white)
                 .font(.largeTitle)
-            
+                
                 VStack {
                     Text(String(mainViewModel.weatherInfo?.name ?? ""))
                     Text("Current Conditions")
@@ -31,10 +31,10 @@ struct WeatherView: View {
                 .font(.headline)
                 
             }
-            
             VStack(alignment: .leading) {
+                TemperatureView(mainViewModel: mainViewModel)
                 ImageView(mainViewModel: mainViewModel)
-                    .padding(.horizontal, 10)
+                    .padding(.bottom)
                 WindView(mainViewModel: mainViewModel)
                 HumidityView(mainViewModel: mainViewModel)
                 PressureView(mainViewModel: mainViewModel)
@@ -55,13 +55,12 @@ struct ImageView: View {
     var mainViewModel: MainView.ViewModel
     
     var body: some View {
-        if let temp = mainViewModel.weatherInfo?.main?.temp {
+        HStack {
+            Spacer()
             if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
-                let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius(temp) : kelvinToFahrenheit(temp)
-                if let str = mainViewModel.formatter.string(for: temperature) {
-                    let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
-                    let url = URL(string: queryString)!
-                    HStack {
+                let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
+                if let url = URL(string: queryString) {
+                    ZStack {
                         AsyncCachedImage(url: url) { image in
                             image
                                 .resizable()
@@ -69,13 +68,48 @@ struct ImageView: View {
                         } placeholder: {
                             ProgressView()
                         }
+                        .font(.title)
+                        
+                        AsyncCachedImage(url: url) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .font(.headline)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .overlay(
+                            Text(mainViewModel.weatherInfo?.weather?[0].description ?? "")
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .padding()
+                                .background(Color.clear), alignment: .bottom)
+                        .font(.largeTitle)
+                    }
+                }
+            }
+             Spacer()
+        }
+    }
+}
+
+struct TemperatureView: View {
+    var mainViewModel: MainView.ViewModel
+    
+    var body: some View {
+        if let temp = mainViewModel.weatherInfo?.main?.temp {
+            if let iconName = mainViewModel.weatherInfo?.weather?[0].icon {
+                let temperature = mainViewModel.settingsViewModel.isCelcius ? kelvinToCelcius(temp) : kelvinToFahrenheit(temp)
+                if let str = mainViewModel.formatter.string(for: temperature) {
+                    let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
+                    HStack {
                         Spacer()
                         Text(str)
                             .font(.largeTitle)
                             .foregroundStyle(.white)
                         Text(mainViewModel.settingsViewModel.isCelcius ? "°C" : "°F")
-                        .font(.largeTitle)
-                        .foregroundStyle(.white)
+                            .font(.largeTitle)
+                            .foregroundStyle(.white)
                     }
                     .accessibilityElement(children: .combine)
                 }
