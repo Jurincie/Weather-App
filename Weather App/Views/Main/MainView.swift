@@ -69,10 +69,10 @@ struct MainView: View {
                     fatalError()
                 }
             }
+            // given time limit line below is a viable solution
+            .dynamicTypeSize(...DynamicTypeSize.accessibility1)
             .frame(maxWidth: .infinity)
             .background(Color.blue.opacity(0.9))
-            // given time limit this is a viable solution
-            .dynamicTypeSize(...DynamicTypeSize.accessibility1)
         }
     }
 }

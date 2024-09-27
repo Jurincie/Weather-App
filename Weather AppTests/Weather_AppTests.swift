@@ -19,6 +19,16 @@ final class Weather_AppTests: XCTestCase {
         
     }
     
+    @MainActor
+    func testLoadWeather() async throws {
+        let viewModel = MainView.ViewModel()
+        let lastQuery = "https://api.openweathermap.org/data/2.5/weather?q=New%20York,NY,UnitedStates&appid=b3660824db9ee07a39128f01914989bc"
+     
+        viewModel.locationManager.weatherQueryString = lastQuery
+            
+        XCTAssertNotNil(viewModel.locationManager)
+    }
+    
     func testTemperatureConversion() {
         let celsius = kelvinToCelsius(273.5)
         XCTAssertEqual(floor(celsius), 0)
@@ -70,3 +80,69 @@ final class Weather_AppTests: XCTestCase {
         }
     }
 }
+
+@MainActor
+final class FetcherTests: XCTestCase {
+    // Given
+    let viewModel = MainView.ViewModel()
+
+    func testWeatherInfoFetching() async throws {
+        // When
+        let apiService = ApiService.self
+
+        // Then
+        /// The image URL in this example returns a random image.
+        /// I recommend mocking outgoing network requests as a best practice:
+        /// https://avanderlee.com/swift/mocking-alamofire-urlsession-requests/
+        let query = viewModel.locationManager.weatherQueryString
+        let response: WeatherInfo = try await apiService.fetch(from: query)
+        XCTAssertNotNil(response.weather?.description)
+    }
+    
+    func testImageFetching() async throws {
+        let queryString = viewModel.locationManager.weatherIconQueryPrefix + "10d" + viewModel.locationManager.weatherIconQuerySuffix
+        if let url = URL(string: queryString) {
+            let asyncimage = AsyncCachedImage(url: url) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .font(.title)
+            } placeholder: {
+                ActivityIndicator()
+            }
+            
+            XCTAssertNotNil(asyncimage)
+        }
+    }
+}
+
+//class AsyncOperationTests: XCTestCase {
+//    func testPerformingOperation() {
+//        // Given
+//        let operation = AsyncOperation { "Hello, world!" }
+//        let expectation = self.expectation(description: #function)
+//        var result: String?
+//
+//        // When
+//        operation.perform { value in
+//            result = value
+//            expectation.fulfill()
+//        }
+//
+//        // Then
+//        waitForExpectations(timeout: 10)
+//        XCTAssertEqual(result, "Hello, world!")
+//    }
+//    
+//    struct AsyncOperation<Value> {
+//        let queue: DispatchQueue = .main
+//        let closure: () -> Value
+//
+//        func perform(then handler: @escaping (Value) -> Void) {
+//            queue.async {
+//                let value = self.closure()
+//                handler(value)
+//            }
+//        }
+//    }
+//}
