@@ -60,7 +60,12 @@ struct ImageView: View {
                 let queryString = mainViewModel.locationManager.weatherIconQueryPrefix + iconName + mainViewModel.locationManager.weatherIconQuerySuffix
                 if let url = URL(string: queryString) {
                     if verticalSizeClass == .regular {
-                        ZStack {
+                        VStack {
+                            Text(mainViewModel.weatherInfo?.weather?[0].description ?? "")
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .padding()
+                                .background(Color.clear, alignment: .bottom)
                             AsyncCachedImage(url: url) { image in
                                 image
                                     .resizable()
@@ -69,13 +74,6 @@ struct ImageView: View {
                             } placeholder: {
                                 ActivityIndicator()
                             }
-                            .overlay(
-                                Text(mainViewModel.weatherInfo?.weather?[0].description ?? "")
-                                    .foregroundColor(.white)
-                                    .font(.title)
-                                    .padding()
-                                    .background(Color.clear, alignment: .bottom)
-                            )
                         }
                     } else {
                         HStack {
