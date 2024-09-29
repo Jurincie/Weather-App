@@ -54,6 +54,16 @@ struct MainView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
+                     Button {
+                         Task {
+                             mainViewModel.locationManager.weatherQueryString = mainViewModel.locationManager.weatherQueryString
+                         }
+                    } label: {
+                        Text("Refresh")
+                            .foregroundStyle(.white)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink{
                         NavigationCoordinator.shared.getSettingsView()
                     } label: {

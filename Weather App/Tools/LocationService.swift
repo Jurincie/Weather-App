@@ -43,7 +43,7 @@ class LocationService: NSObject, ObservableObject {
                     self.status = .idle
                     self.searchResults = []
                 }
-        })
+            })
     }
 }
 

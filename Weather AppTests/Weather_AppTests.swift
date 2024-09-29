@@ -115,34 +115,3 @@ final class FetcherTests: XCTestCase {
         }
     }
 }
-
-//class AsyncOperationTests: XCTestCase {
-//    func testPerformingOperation() {
-//        // Given
-//        let operation = AsyncOperation { "Hello, world!" }
-//        let expectation = self.expectation(description: #function)
-//        var result: String?
-//
-//        // When
-//        operation.perform { value in
-//            result = value
-//            expectation.fulfill()
-//        }
-//
-//        // Then
-//        waitForExpectations(timeout: 10)
-//        XCTAssertEqual(result, "Hello, world!")
-//    }
-//    
-//    struct AsyncOperation<Value> {
-//        let queue: DispatchQueue = .main
-//        let closure: () -> Value
-//
-//        func perform(then handler: @escaping (Value) -> Void) {
-//            queue.async {
-//                let value = self.closure()
-//                handler(value)
-//            }
-//        }
-//    }
-//}
