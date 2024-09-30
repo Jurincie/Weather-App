@@ -14,7 +14,9 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            Color.gray.edgesIgnoringSafeArea(.all)
+            // background
+            Color.white.edgesIgnoringSafeArea(.all)
+            
             VStack(alignment: .leading, spacing: 20) {
                 HStack(spacing: 10) {
                     Image(systemName: "thermometer")
@@ -42,8 +44,10 @@ struct SettingsView: View {
             .background(.blue)
             .foregroundStyle(.white)
             .padding()
-            .border(.primary, width: 2)
+            .border(.secondary, width: 2)
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .background(Color.primary)
         // given time limit this is a viable solution
         .dynamicTypeSize(...DynamicTypeSize.accessibility1)
     }

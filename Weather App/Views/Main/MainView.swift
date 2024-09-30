@@ -35,6 +35,9 @@ struct MainView: View {
                     .padding()
                 }
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                mainViewModel.locationManager.weatherQueryString = mainViewModel.locationManager.weatherQueryString
+            }
             .sheet(isPresented: $showSearchSheet) {
                 CitySearchView(locationService: LocationService(),
                                viewModel: mainViewModel)
@@ -59,7 +62,7 @@ struct MainView: View {
                              mainViewModel.locationManager.weatherQueryString = mainViewModel.locationManager.weatherQueryString
                          }
                     } label: {
-                        Text("Refresh")
+                        Image(systemName: "arrow.clockwise.square")
                             .foregroundStyle(.white)
                     }
                 }
@@ -67,7 +70,7 @@ struct MainView: View {
                     NavigationLink{
                         NavigationCoordinator.shared.getSettingsView()
                     } label: {
-                        Text("Settings")
+                        Image(systemName: "gear.circle")
                             .foregroundStyle(.white)
                     }
                 }
