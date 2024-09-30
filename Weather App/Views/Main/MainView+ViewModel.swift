@@ -72,7 +72,8 @@ extension MainView {
             Task {
                 do {
                     isLoading = true
-                    weatherInfo = try await ApiService.fetch(from: notification.object as! String)
+                    var text = notification.object as! String
+                    weatherInfo = try await ApiService.fetch(from:text.lowercased())
                     isLoading = false
                 } catch {
                     showErrorAlert = true
