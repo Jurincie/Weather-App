@@ -23,9 +23,9 @@ extension MainView {
         let settingsViewModel = SettingsView.ViewModel.shared
         var weatherInfo: WeatherInfo?
         var isLoading = false
+        let center = NotificationCenter.default
         
         init() {
-            let center = NotificationCenter.default
             center.addObserver(self,
                                selector: #selector(fetchWeatherInfo),
                                name: Notification.Name("Fetch WeatherInfo"),
@@ -34,7 +34,6 @@ extension MainView {
         
         deinit
         {
-            let center = NotificationCenter.default
             center.removeObserver(self,
                                   name:NSNotification.Name(rawValue: "Fetch WeatherInfo"),
                                   object: String.self)
