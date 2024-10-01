@@ -35,6 +35,7 @@ struct MainView: View {
                     .padding()
                 }
             }
+            .onDisappear(perform: {mainViewModel.locationManager.manager.stopUpdatingLocation()})
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 mainViewModel.locationManager.weatherQueryString = mainViewModel.locationManager.weatherQueryString
             }

@@ -85,9 +85,12 @@ extension MainView {
             if (UserDefaults.standard.string(forKey: "LastQueryString") != nil) {
                 locationManager.weatherQueryString = UserDefaults.standard.string(forKey: "LastQueryString")!
             } else {
-                if let location = locationManager.manager.location {
-                    locationManager.setWeatherQueryFromReverseGeoLocation(location: location)
-                }
+                repeat {
+                    print("No location yet")
+                    sleep(1)
+                } while (locationManager.manager.location == nil)
+                
+                locationManager.setWeatherQueryFromReverseGeoLocation(location: locationManager.manager.location!)
             }
         }
     }

@@ -28,6 +28,7 @@ class LocationManager {
     
     init() {
         requestLocationPermission()
+        self.manager.startUpdatingLocation()
         getCurrentLocation()
     }
     
@@ -36,7 +37,6 @@ class LocationManager {
     }
     
     func getCurrentLocation() {
-        manager.startUpdatingLocation()
         location = manager.location
         print(location.debugDescription)
     }
