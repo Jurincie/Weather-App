@@ -17,6 +17,7 @@ struct MainView: View {
             VStack(alignment: .leading) {
                 if mainViewModel.isLoading {
                     ActivityIndicator()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     NavigationStack {
                         WeatherView(ViewModel: mainViewModel)

@@ -87,22 +87,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "870DCF94-4BAD-46BC-8C3E-20E60A517108"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Weather App/Tools/LocationManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "setWeatherQueryFromReverseGeoLocation(location:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "547C3CB2-7AFE-405B-A0F4-A5F5A45EE602"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -143,67 +127,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
-            endingLineNumber = "61">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CC11B64C-828D-4018-A829-C43816C444D1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Weather App/Views/Main/MainView+ViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "init()"
+            endingLineNumber = "61"
+            landmarkName = "locationManager(_:didChangeAuthorization:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CC11B64C-828D-4018-A829-C43816C444D1 - 9d1c565cf50b5b10"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Documents/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33">
-               </Location>
-               <Location
-                  uuid = "CC11B64C-828D-4018-A829-C43816C444D1 - 1dd09421c379074f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () async throws -&gt; () in Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Documents/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33">
-               </Location>
-               <Location
-                  uuid = "CC11B64C-828D-4018-A829-C43816C444D1 - ecdeed9b5c933e24"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async throws -&gt; () in Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Documents/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -225,77 +151,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "83D946EA-AD32-4349-8E08-CB60C3162522"
+            uuid = "7B966E9B-097C-4649-B46A-45E36E942BBA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Weather App/Views/Main/MainView+ViewModel.swift"
+            filePath = "Weather App/Tools/LocationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "loadWeather()"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "locationManager(_:didChangeAuthorization:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A5700311-209A-4EBE-A546-2F8213E7488F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Weather App/Views/Main/MainView+ViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "init()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A5700311-209A-4EBE-A546-2F8213E7488F - ecdeed9b5c933e05"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async throws -&gt; () in Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Documents/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34">
-               </Location>
-               <Location
-                  uuid = "A5700311-209A-4EBE-A546-2F8213E7488F - 14b25418eb83905b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 () async throws -&gt; () in Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Documents/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34">
-               </Location>
-               <Location
-                  uuid = "A5700311-209A-4EBE-A546-2F8213E7488F - e7bb38f206da6207"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; () in Weather_App.MainView.ViewModel.init() -&gt; Weather_App.MainView.ViewModel"
-                  moduleName = "Weather App.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ronjurincie/Documents/Weather-App/Weather%20App/Views/Main/MainView+ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

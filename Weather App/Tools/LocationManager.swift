@@ -52,3 +52,16 @@ class LocationManager {
         })
     }
 }
+
+extension LocationManager {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse:
+            print("Location authorized when in use")
+        case .denied:
+            print("Location access denied")
+        default:
+            break
+        }
+    }
+}

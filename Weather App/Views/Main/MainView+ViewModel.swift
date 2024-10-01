@@ -71,26 +71,33 @@ extension MainView {
         @objc func fetchWeatherInfo(notification: Notification) {
             Task {
                 do {
-                    isLoading = true
                     let str = notification.object as! String
                     weatherInfo = try await ApiService.fetch(from:str.lowercased())
-                    isLoading = false
                 } catch {
                     showErrorAlert = true
                 }
             }
         }
         
+        /// This method should only be called on initial launch
+        /// This method calls setWeatherQueryFromReverseGeoLocation
+        /// Since the location might not be available it waits via repeat loop with sleep(1)
+        /// 
         func loadWeather() async throws {
+            isLoading = true
             if (UserDefaults.standard.string(forKey: "LastQueryString") != nil) {
                 locationManager.weatherQueryString = UserDefaults.standard.string(forKey: "LastQueryString")!
             } else {
-                repeat {
-                    print("No location yet")
-                    sleep(1)
-                } while (locationManager.manager.location == nil)
-                
+                if locationManager.manager.location == nil {
+                    repeat {
+                        print("No location yet")
+                        sleep(1)
+                    } while (locationManager.manager.location == nil)
+                }
+        
                 locationManager.setWeatherQueryFromReverseGeoLocation(location: locationManager.manager.location!)
+                isLoading = false
+
             }
         }
     }
