@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-class LocationManager {
+class LocationManager: NSObject {
     let weatherIconQueryPrefix = "https://openweathermap.org/img/wn/"
     let weatherIconQuerySuffix = "@2x.png"
     let weatherApi_KEY = "b3660824db9ee07a39128f01914989bc"
@@ -26,21 +26,31 @@ class LocationManager {
     }
     static var shared = LocationManager() // Singleton
     
-    init() {
-        requestLocationPermission()
-        self.manager.startUpdatingLocation()
-        getCurrentLocation()
+    override init() {
+        super.init()
+        self.manager.delegate = self
+        self.manager.requestWhenInUseAuthorization()
     }
-    
-    func requestLocationPermission() {
-        manager.requestWhenInUseAuthorization()
-    }
-    
+
     func getCurrentLocation() {
         location = manager.location
         print(location.debugDescription)
     }
-
+    
+    /// This method should only be called on initial launch
+    /// This method calls setWeatherQueryFromReverseGeoLocation
+    /// Since the location might not be available it waits via repeat loop with sleep(1)
+    ///
+    func loadWeather() async throws {
+        if (UserDefaults.standard.string(forKey: "LastQueryString") != nil) {
+            weatherQueryString = UserDefaults.standard.string(forKey: "LastQueryString")!
+        } else {
+            getCurrentLocation()
+            if let location = manager.location {
+                setWeatherQueryFromReverseGeoLocation(location: location)
+            }
+        }
+    }
     func setWeatherQueryFromReverseGeoLocation(location: CLLocation) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location,
@@ -53,11 +63,16 @@ class LocationManager {
     }
 }
 
-extension LocationManager {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+extension LocationManager: CLLocationManagerDelegate  {
+    @objc(locationManager:didChangeAuthorizationStatus:) func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .authorizedWhenInUse:
-            print("Location authorized when in use")
+           fallthrough
+        case .authorizedAlways:
+            manager.startUpdatingLocation()
+            Task {
+                try? await loadWeather()
+            }
         case .denied:
             print("Location access denied")
         default:

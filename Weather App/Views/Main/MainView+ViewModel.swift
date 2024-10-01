@@ -30,9 +30,6 @@ extension MainView {
                                selector: #selector(fetchWeatherInfo),
                                name: Notification.Name("Fetch WeatherInfo"),
                                object: nil)
-            Task {
-                try await loadWeather()
-            }
         }
         
         deinit
@@ -76,28 +73,6 @@ extension MainView {
                 } catch {
                     showErrorAlert = true
                 }
-            }
-        }
-        
-        /// This method should only be called on initial launch
-        /// This method calls setWeatherQueryFromReverseGeoLocation
-        /// Since the location might not be available it waits via repeat loop with sleep(1)
-        /// 
-        func loadWeather() async throws {
-            isLoading = true
-            if (UserDefaults.standard.string(forKey: "LastQueryString") != nil) {
-                locationManager.weatherQueryString = UserDefaults.standard.string(forKey: "LastQueryString")!
-            } else {
-                if locationManager.manager.location == nil {
-                    repeat {
-                        print("No location yet")
-                        sleep(1)
-                    } while (locationManager.manager.location == nil)
-                }
-        
-                locationManager.setWeatherQueryFromReverseGeoLocation(location: locationManager.manager.location!)
-                isLoading = false
-
             }
         }
     }
