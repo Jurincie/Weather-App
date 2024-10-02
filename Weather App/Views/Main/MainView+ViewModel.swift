@@ -58,7 +58,7 @@ extension MainView {
             case 292..<337:
                 return "NorthWest"
             case 337..<360:
-                return "North"
+                return "North:"
             default:
                 return "North"
             }

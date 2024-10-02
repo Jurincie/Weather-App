@@ -161,7 +161,7 @@ struct HumidityView: View {
         if mainViewModel.weatherInfo?.main?.humidity != nil {
             HStack {
                 Image(systemName: "humidity")
-                Text("Humidity:")
+                Text("Humidity")
                 Text("\(mainViewModel.weatherInfo?.main?.humidity ?? 0)°")
             }
             .font(.title)
@@ -176,7 +176,7 @@ struct PressureView: View {
         if mainViewModel.weatherInfo?.main?.pressure != nil {
             HStack {
                 Image(systemName: "barometer")
-                Text("Pressure:")
+                Text("Pressure")
                 Text("\(mainViewModel.weatherInfo?.main?.pressure ?? 0) mb")
             }
             .font(.title)
