@@ -140,11 +140,13 @@ struct WindView: View {
             if let str = mainViewModel.formatter.string(for: adjustedWindSpeed) {
                 HStack {
                     Image(systemName: "wind")
+                    if let degrees = mainViewModel.weatherInfo?.wind?.deg {
+                        Image(systemName: "arrow.up")
+                            .rotationEffect(.degrees(Double(degrees)))
+                        Text(mainViewModel.getWindDirectionText(degrees))
+                    }
                     Text(str)
                     Text(mainViewModel.settingsViewModel.isMetric ? "KPH" : "MPH")
-                    if let degrees = mainViewModel.weatherInfo?.wind?.deg {
-                        mainViewModel.getWindDirectionImage(degrees)
-                    }
                 }
                 .font(.title)
                 .accessibilityElement(children: .combine)

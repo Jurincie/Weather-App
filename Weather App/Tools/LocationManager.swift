@@ -39,8 +39,6 @@ class LocationManager: NSObject {
     
     /// This method should only be called on initial launch
     /// This method calls setWeatherQueryFromReverseGeoLocation
-    /// Since the location might not be available it waits via repeat loop with sleep(1)
-    ///
     func loadWeather() async throws {
         if (UserDefaults.standard.string(forKey: "LastQueryString") != nil) {
             weatherQueryString = UserDefaults.standard.string(forKey: "LastQueryString")!

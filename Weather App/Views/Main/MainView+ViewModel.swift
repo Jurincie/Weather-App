@@ -39,28 +39,28 @@ extension MainView {
                                   object: String.self)
         }
         
-        func getWindDirectionImage(_ degrees: Int) -> Image {
+        func getWindDirectionText(_ degrees: Int) -> String {
             switch degrees {
             case 0..<22:
-                return Image(systemName: "arrow.down")
+                return "North"
             case 22..<67:
-                return Image(systemName: "arrow.down.left")
+                return "NorthEast"
             case 67..<112:
-                return Image(systemName: "arrow.left")
+                return "East"
             case 112..<157:
-                return Image(systemName: "arrow.up.left")
+                return "SouthEast"
             case 157..<202:
-                return Image(systemName: "arrow.up")
+                return "South"
             case 202..<247:
-                return Image(systemName: "arrow.up.right")
+                return "SouthWest"
             case 247..<292:
-                return Image(systemName: "arrow.right")
+                return "West"
             case 292..<337:
-                return Image(systemName: "arrow.down.right")
+                return "NorthWest"
             case 337..<360:
-                return Image(systemName: "arrow.down")
+                return "North"
             default:
-                return Image(systemName: "arrow.down")
+                return "North"
             }
         }
         
