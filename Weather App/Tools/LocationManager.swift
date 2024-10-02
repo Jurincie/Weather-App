@@ -19,8 +19,8 @@ class LocationManager: NSObject {
     var weatherQueryString = "" {
         didSet {
             UserDefaults.standard.setValue(weatherQueryString, forKey: "LastQueryString")
-            let center = NotificationCenter.default
-            center.post(name: Notification.Name("Fetch WeatherInfo"),
+            let nc = NotificationCenter.default
+            nc.post(name: Notification.Name("Fetch WeatherInfo"),
                         object: weatherQueryString)
         }
     }

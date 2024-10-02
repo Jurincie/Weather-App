@@ -68,7 +68,8 @@ extension MainView {
             Task {
                 do {
                     let str = notification.object as! String
-                    weatherInfo = try await ApiService.fetch(from:str.lowercased())
+                    weatherInfo = try await ApiService.fetch(from:str)
+                    print("xx")
                 } catch {
                     showErrorAlert = true
                 }

@@ -9,40 +9,30 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.sizeCategory) var sizeCategory
-    @State var showSearchSheet = false
-    let mainViewModel = ViewModel()
+    @State private var showSearchSheet = false
+    @State private var viewModel = ViewModel()
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                if mainViewModel.isLoading {
+                if viewModel.isLoading {
                     ActivityIndicator()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     NavigationStack {
-                        WeatherView(ViewModel: mainViewModel)
-                        Spacer()
-                        ViewThatFits() {
-                            Text(Date.now, format: .dateTime.day().month().year().hour().minute())
-                                .font(.caption)
-                                .font(.largeTitle)
-                            
-                            Text(Date.now.formatted(date: .abbreviated, time: .omitted))
-                                .font(.title)
-                        }
-                        .foregroundStyle(.white)
+                        WeatherView(viewModel: $viewModel)
                     }
                     .navigationTitle("Weather")
                     .padding()
                 }
             }
-            .onDisappear(perform: {mainViewModel.locationManager.manager.stopUpdatingLocation()})
+            .onDisappear(perform: {viewModel.locationManager.manager.stopUpdatingLocation()})
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                mainViewModel.locationManager.weatherQueryString = mainViewModel.locationManager.weatherQueryString
+                viewModel.locationManager.weatherQueryString = viewModel.locationManager.weatherQueryString
             }
             .sheet(isPresented: $showSearchSheet) {
                 CitySearchView(locationService: LocationService(),
-                               viewModel: mainViewModel)
+                               viewModel: viewModel)
                 .presentationBackground(.thinMaterial)
             }
             .presentationDetents([.medium])
@@ -59,6 +49,16 @@ struct MainView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
+                     Button {
+                         Task {
+                             viewModel.locationManager.weatherQueryString = viewModel.locationManager.weatherQueryString
+                         }
+                    } label: {
+                        Image(systemName: "arrow.clockwise.square")
+                            .foregroundStyle(.white)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink{
                         NavigationCoordinator.shared.getSettingsView()
                     } label: {
@@ -69,7 +69,7 @@ struct MainView: View {
             }
             .minimumScaleFactor(sizeCategory.customMinScaleFactor)
             .alert("API Error",
-                   isPresented: Bindable(mainViewModel).showErrorAlert) {
+                   isPresented: $viewModel.showErrorAlert) {
                 Button("OK", role: .cancel) {
                     fatalError()
                 }

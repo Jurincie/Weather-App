@@ -10,20 +10,20 @@ import SwiftUI
 struct WeatherView: View {
     @Environment(\.sizeCategory) var sizeCategory
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    var ViewModel: MainView.ViewModel
+    @Binding var viewModel: MainView.ViewModel
     
     var body: some View {
         VStack {
             ViewThatFits {
                 VStack {
-                    Text(String(ViewModel.weatherInfo?.name ?? ""))
+                    Text(String(viewModel.weatherInfo?.name ?? ""))
                         .foregroundStyle(.white)
                         .font(.largeTitle)
                     Text("Current Conditions")
                         .font(.title)
                 }
                 VStack {
-                    Text(String(ViewModel.weatherInfo?.name ?? ""))
+                    Text(String(viewModel.weatherInfo?.name ?? ""))
                         .font(.headline)
                     Text("Current Conditions")
                         .font(.caption)
@@ -31,11 +31,21 @@ struct WeatherView: View {
             }
             .foregroundStyle(.white)
             VStack(alignment: .leading) {
-                TemperatureView(mainViewModel: ViewModel)
-                ImageView(mainViewModel: ViewModel)
-                WindView(mainViewModel: ViewModel)
-                HumidityView(mainViewModel: ViewModel)
-                PressureView(mainViewModel: ViewModel)
+                TemperatureView(mainViewModel: $viewModel)
+                ImageView(mainViewModel: $viewModel)
+                WindView(mainViewModel: $viewModel)
+                HumidityView(mainViewModel: $viewModel)
+                PressureView(mainViewModel: $viewModel)
+                Spacer()
+                ViewThatFits() {
+                    Text(Date.now, format: .dateTime.day().month().year().hour().minute())
+                        .font(.caption)
+                        .font(.largeTitle)
+                    
+                    Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                        .font(.title)
+                }
+                .foregroundStyle(.white)
             }
             .minimumScaleFactor(sizeCategory.customMinScaleFactor)
             .foregroundStyle(.white)
@@ -45,13 +55,13 @@ struct WeatherView: View {
     }
 }
 
-#Preview {
-    WeatherView(ViewModel: MainView.ViewModel())
-}
+//#Preview {
+//    WeatherView(viewModel = Binding(MainView.ViewModel())
+//}
 
 struct ImageView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    var mainViewModel: MainView.ViewModel
+    @Binding var mainViewModel: MainView.ViewModel
     
     var body: some View {
         HStack {
@@ -100,7 +110,7 @@ struct ImageView: View {
 }
 
 struct TemperatureView: View {
-    var mainViewModel: MainView.ViewModel
+    @Binding var mainViewModel: MainView.ViewModel
     
     var body: some View {
         if let temp = mainViewModel.weatherInfo?.main?.temp {
@@ -121,7 +131,8 @@ struct TemperatureView: View {
 }
 
 struct WindView: View {
-    var mainViewModel: MainView.ViewModel
+    @Binding var mainViewModel: MainView.ViewModel
+    
     var body: some View {
         if mainViewModel.weatherInfo?.wind?.speed != nil,
            let windSpeed = mainViewModel.weatherInfo?.wind?.speed {
@@ -143,7 +154,7 @@ struct WindView: View {
 }
 
 struct HumidityView: View {
-    var mainViewModel: MainView.ViewModel
+    @Binding var mainViewModel: MainView.ViewModel
     var body: some View {
         if mainViewModel.weatherInfo?.main?.humidity != nil {
             HStack {
@@ -158,7 +169,7 @@ struct HumidityView: View {
 }
 
 struct PressureView: View {
-    var mainViewModel: MainView.ViewModel
+    @Binding var mainViewModel: MainView.ViewModel
     var body: some View {
         if mainViewModel.weatherInfo?.main?.pressure != nil {
             HStack {
