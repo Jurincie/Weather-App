@@ -26,7 +26,7 @@ struct MainView: View {
                     .padding()
                 }
             }
-            .onDisappear(perform: {viewModel.locationManager.manager.stopUpdatingLocation()})
+            // update weatherInfo for current location when returning to foreground
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 viewModel.locationManager.weatherQueryString = viewModel.locationManager.weatherQueryString
             }

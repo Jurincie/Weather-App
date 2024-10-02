@@ -49,6 +49,8 @@ class LocationManager: NSObject {
             if let location = manager.location {
                 setWeatherQueryFromReverseGeoLocation(location: location)
             }
+            // we have location and do not want to track user
+            manager.stopUpdatingLocation()
         }
     }
     func setWeatherQueryFromReverseGeoLocation(location: CLLocation) {
