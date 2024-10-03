@@ -141,7 +141,7 @@ struct WindView: View {
                 HStack {
                     Image(systemName: "wind")
                     if let degrees = mainViewModel.weatherInfo?.wind?.deg {
-                        Image(systemName: "arrow.up")
+                        Image(systemName: "arrow.down")
                             .rotationEffect(.degrees(Double(degrees)))
                         Text(mainViewModel.getWindDirectionText(degrees))
                     }

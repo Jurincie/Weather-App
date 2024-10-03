@@ -43,31 +43,31 @@ final class Weather_AppTests: XCTestCase {
         
         for _ in 0...20 {
             rand = Int.random(in: 0..<22)
-            XCTAssertEqual(viewModel.getWindDirectionText(rand), "South")
+            XCTAssertEqual(viewModel.getWindDirectionText(rand), "North")
             
             rand = Int.random(in: 22..<67)
-            XCTAssertEqual(viewModel.getWindDirectionText(rand), "SouthEast")
+            XCTAssertEqual(viewModel.getWindDirectionText(rand), "NorthEast")
             
             rand = Int.random(in: 67..<112)
             XCTAssertEqual(viewModel.getWindDirectionText(rand), "East")
             
             rand = Int.random(in: 112..<157)
-            XCTAssertEqual(viewModel.getWindDirectionText(rand), "NorthEast")
+            XCTAssertEqual(viewModel.getWindDirectionText(rand), "SouthEast")
             
             rand = Int.random(in: 157..<202)
-            XCTAssertEqual(viewModel.getWindDirectionText(rand), "North")
+            XCTAssertEqual(viewModel.getWindDirectionText(rand), "South")
             
             rand = Int.random(in: 202..<247)
-            XCTAssertEqual(viewModel.getWindDirectionText(rand), "NorthWest")
+            XCTAssertEqual(viewModel.getWindDirectionText(rand), "SouthWest")
             
             rand = Int.random(in: 247..<292)
             XCTAssertEqual(viewModel.getWindDirectionText(rand), "West")
             
             rand = Int.random(in: 292..<337)
-            XCTAssertEqual(viewModel.getWindDirectionText(rand), "SouthWest")
+            XCTAssertEqual(viewModel.getWindDirectionText(rand), "NorthWest")
             
             rand = Int.random(in: 337..<360)
-            XCTAssertEqual(viewModel.getWindDirectionText(rand), "South")
+            XCTAssertEqual(viewModel.getWindDirectionText(rand), "North")
         }
     }
 }

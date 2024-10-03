@@ -42,21 +42,21 @@ extension MainView {
         func getWindDirectionText(_ degrees: Int) -> String {
             switch degrees {
             case 22..<67:
-                return "SouthWest"
-            case 67..<112:
-                return "West"
-            case 112..<157:
-                return "NorthWest"
-            case 157..<202:
-                return "North"
-            case 202..<247:
                 return "NorthEast"
-            case 247..<292:
+            case 67..<112:
                 return "East"
-            case 292..<337:
+            case 112..<157:
                 return "SouthEast"
-            default:
+            case 157..<202:
                 return "South"
+            case 202..<247:
+                return "SouthWest"
+            case 247..<292:
+                return "West"
+            case 292..<337:
+                return "NorthWest"
+            default:
+                return "North"
             }
         }
         
