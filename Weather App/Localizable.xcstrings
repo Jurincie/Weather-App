@@ -19,7 +19,7 @@
     "°F" : {
 
     },
-    "API Error" : {
+    "Could not fetch weather for chosen location." : {
 
     },
     "Current Conditions" : {

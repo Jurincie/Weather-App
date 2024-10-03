@@ -18,11 +18,9 @@ struct AsyncCachedImage<ImageView: View, PlaceholderView: View>: View {
     // Downloaded image
     @State var image: UIImage? = nil
     
-    init(
-        url: URL?,
-        @ViewBuilder content: @escaping (Image) -> ImageView,
-        @ViewBuilder placeholder: @escaping () -> PlaceholderView
-    ) {
+    init(url: URL? = nil,
+         @ViewBuilder content: @escaping (Image) -> ImageView,
+         @ViewBuilder placeholder: @escaping () -> PlaceholderView) {
         self.url = url
         self.content = content
         self.placeholder = placeholder
@@ -56,7 +54,9 @@ struct AsyncCachedImage<ImageView: View, PlaceholderView: View>: View {
                 let (data, response) = try await URLSession.shared.data(from: url)
                 
                 // Save returned image data into the cache
-                URLCache.shared.storeCachedResponse(.init(response: response, data: data), for: .init(url: url))
+                URLCache.shared.storeCachedResponse(.init(response: response,
+                                                          data: data),
+                                                    for: .init(url: url))
                 
                 guard let image = UIImage(data: data) else {
                     return nil

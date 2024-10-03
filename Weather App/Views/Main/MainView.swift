@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(\.sizeCategory) var sizeCategory
     @State private var showSearchSheet = false
     @State private var viewModel = ViewModel()
@@ -68,10 +69,10 @@ struct MainView: View {
                 }
             }
             .minimumScaleFactor(sizeCategory.customMinScaleFactor)
-            .alert("API Error",
+            .alert("Could not fetch weather for chosen location.",
                    isPresented: $viewModel.showErrorAlert) {
                 Button("OK", role: .cancel) {
-                    fatalError()
+                    dismiss()
                 }
             }
             // given time limit line below is a viable solution
